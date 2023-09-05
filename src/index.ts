@@ -1,11 +1,11 @@
 
+import fs from 'fs-extra'
+
+
+
 const _help_ = "--help";
 const _name_ = "--name";
 
-
-if (process.argv.includes(_help_)) {
-    console.log('Je vais vous aider');
-  }
 
 if (process.argv.includes(_name_)) {
     const nameIndex = process.argv.indexOf('--name') + 1;
@@ -16,27 +16,10 @@ if (process.argv.includes(_name_)) {
       console.log('Mettez un nom après l\'argument name');
     }
 };
-//class Personne{
-//    nom: string;
-//    prenom: string;
-//    age: number;
-//    sexe: string;
-//
-//    constructor(nom:string, prenom:string, age:number, sexe:string){
-//    this.nom = nom;
-//    this.prenom = prenom;
-//    this.age = age;
-//    this.sexe = sexe;
-//    }
-//};
-//
-//const personne1 = new Personne("Laforge", "Thomas", 30, "Masculin");
-//const personne2 = new Personne("Amish", "Fatir", 30, "Masculin");
-//
-//console.log(Personne);
-//console.log(personne1);
-//console.log(personne2);
-//
+
+if (process.argv.includes(_help_)) {
+    console.log('Je vais vous aider');
+  }
 
 
 interface Person {
@@ -54,8 +37,6 @@ const personne: Person = {
     sexe: "Masculin",
 };
 
-
-
 const personne2: Person = {
     nom: "Laforge",
     prenom: "Thomas",
@@ -67,3 +48,13 @@ personne2.prenom = "Fatir"
 
 console.log(personne)
 console.log(personne2)
+
+const file = '/home/tim/Bureau/node/mon-premier-programme-nodejs/jsonFile.json'
+fs.outputJsonSync(file, {personne, personne2})
+
+const data = fs.readJsonSync(file)
+console.log(data) 
+
+import "dotenv/config"
+
+console.log("env", process.env.NAME)
